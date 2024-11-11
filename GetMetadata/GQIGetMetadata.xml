@@ -5,7 +5,7 @@
 	<Type>Automation</Type>
 	<Author>SKYLINE2\RCO</Author>
 	<CheckSets>FALSE</CheckSets>
-	<Folder></Folder>
+	<Folder>GQI</Folder>
 
 	<Protocols>
 	</Protocols>
@@ -20,6 +20,8 @@
 		<Exe id="1" type="csharp">
 			<Value><![CDATA[[Project:GQI-GetMetadata_1]]]></Value>
 			<!--<Param type="debug">true</Param>-->
+			<Param type="preCompile">true</Param>
+			<Param type="libraryName">GQI_Metadata</Param>
 			<Message></Message>
 		</Exe>
 	</Script>
