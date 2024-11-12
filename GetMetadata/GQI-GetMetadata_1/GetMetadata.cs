@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using Newtonsoft.Json;
     using Skyline.DataMiner.Analytics.GenericInterface;
     using Skyline.DataMiner.Net.Helper;
@@ -19,11 +20,18 @@
 
         public OnArgumentsProcessedOutputArgs OnArgumentsProcessed(OnArgumentsProcessedInputArgs args)
         {
-            var metadataJson = string.IsNullOrWhiteSpace(args.GetArgumentValue(metadataJsonArg)) ? string.Empty : args.GetArgumentValue(metadataJsonArg);
+            try
+            {
+                var metadataJson = string.IsNullOrWhiteSpace(args.GetArgumentValue(metadataJsonArg)) ? string.Empty : args.GetArgumentValue(metadataJsonArg);
 
-            metadataDictionary = metadataJson.IsNullOrEmpty() ? new Dictionary<string, object>() : JsonConvert.DeserializeObject<Dictionary<string, object>>(metadataJson);
+                metadataDictionary = metadataJson.IsNullOrEmpty() ? new Dictionary<string, object>() : JsonConvert.DeserializeObject<Dictionary<string, object>>(metadataJson);
 
-            return default;
+                return default;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Please, select one row so valid data could be shown.");
+            }
         }
 
         public GQIColumn[] GetColumns()
