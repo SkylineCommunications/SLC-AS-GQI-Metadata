@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using Newtonsoft.Json;
     using Skyline.DataMiner.Analytics.GenericInterface;
     using Skyline.DataMiner.Net.Helper;
