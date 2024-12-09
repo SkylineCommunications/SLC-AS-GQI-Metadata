@@ -48,14 +48,17 @@
 
             foreach (var kvp in metadataDictionary)
             {
-                rows.Add(CreateRow(kvp.Key, kvp.Value.ToString()));
+                rows.Add(CreateRow(kvp.Key, kvp.Value));
             }
 
             return new GQIPage(rows.ToArray());
         }
 
-        private GQIRow CreateRow(string key, string value)
+        private GQIRow CreateRow(string key, object value = null)
         {
+            if (value == null)
+                value = string.Empty;
+
             return new GQIRow(
                 new[]
                 {
@@ -65,7 +68,7 @@
                     },
                     new GQICell
                     {
-                        Value = value,
+                        Value = value.ToString(),
                     },
                 });
         }
