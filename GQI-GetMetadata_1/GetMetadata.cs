@@ -54,11 +54,8 @@
             return new GQIPage(rows.ToArray());
         }
 
-        private GQIRow CreateRow(string key, object value = null)
+        private GQIRow CreateRow(string key, object value)
         {
-            if (value == null)
-                value = string.Empty;
-
             return new GQIRow(
                 new[]
                 {
@@ -68,7 +65,7 @@
                     },
                     new GQICell
                     {
-                        Value = value.ToString(),
+                        Value = value != null ? value.ToString() : string.Empty,
                     },
                 });
         }
